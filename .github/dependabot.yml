@@ -1,7 +1,7 @@
 version: 2
 updates:
-  - package-ecosystem: "" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "docker" # Specifies Docker/OCI images
+    directory: "/myblog-yaml"   # Directory to scan for Kubernetes manifests
     schedule:
-      interval: "daily"
+      interval: "daily"         # Check for updates daily
 
