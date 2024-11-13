@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: "docker" # Specifies Docker/OCI images
-    directory: "/k8s"             # Directory to scan for manifests
+    directory: "/"             # Directory to scan for manifests
     open-pull-requests-limit: 5 # Limits the number of open PRs
 
 registries:
