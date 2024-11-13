@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgsql-deployment
+  namespace: myblog-yaml
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgsql
+  template:
+    metadata:
+      labels:
+        app: pgsql
+    spec:
+      containers:
+      - name: pgsql
+        image: postgres:latest
+        ports:
+        - containerPort: 5432
+        envFrom:
+        - configMapRef:
+            name: pgsql-config
+        volumeMounts:
+        - mountPath: /var/lib/postgresql
+          name: pgsql-storage
+      volumes:
+      - name: pgsql-storage
+        persistentVolumeClaim:
+          claimName: pgsql-pvc

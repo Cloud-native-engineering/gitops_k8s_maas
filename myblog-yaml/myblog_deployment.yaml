@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myblog-deployment
+  namespace: myblog-yaml
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: myblog
+  template:
+    metadata:
+      labels:
+        app: myblog
+    spec:
+      containers:
+      - name: myblog
+        image: ghcr.io/cloud-native-engineering/myblog:0.0.3
+        ports:
+        - containerPort: 80
+        env:
+        - name: ENV
+          value: production
+        - name: USER
+          valueFrom:
+            configMapKeyRef:
+              name: pgsql-config
+              key: POSTGRES_USER
+        - name: PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: pgsql-config
+              key: POSTGRES_PASSWORD
+        - name: HOST
+          value: pgsql-service
+        - name: PORT
+          value: "5432"
+        - name: DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: pgsql-config
+              key: POSTGRES_DB
