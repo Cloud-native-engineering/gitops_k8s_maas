@@ -1,12 +1,8 @@
 version: 2
 updates:
-  - package-ecosystem: "docker" # Specifies Docker/OCI images
+  # Check if a new OCI image is available
+  - package-ecosystem: "docker"
     schedule:
-      interval: "daily"        # Check for updates every hour
-    directory: "/"             # Directory to scan for manifests
-    open-pull-requests-limit: 5 # Limits the number of open PRs
-
-registries:
-  dockerhub:
-    type: docker-registry
-    url: https://ghcr.io/cloud-native-engineering
+      interval: "daily"
+    directory: "/"
+    open-pull-requests-limit: 5 # Limits the number of open PRsd
