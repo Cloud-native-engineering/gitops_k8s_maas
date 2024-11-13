@@ -1,6 +1,8 @@
 version: 2
 updates:
   - package-ecosystem: "docker" # Specifies Docker/OCI images
+    schedule:
+      interval: "hourly"        # Check for updates every hour
     directory: "/"             # Directory to scan for manifests
     open-pull-requests-limit: 5 # Limits the number of open PRs
 
